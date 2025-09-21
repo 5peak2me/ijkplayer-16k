@@ -3,12 +3,14 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
+        classpath 'com.android.tools.build:gradle:8.13.0'
 
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+//        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -17,19 +19,24 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
+        google()
+        maven {
+            url("https://repo.gradle.org/artifactory/jcenter-backup/")
+        }
     }
 }
 
 ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "25.0.3"
+    compileSdkVersion = 29
+//    buildToolsVersion = "25.0.3"
 
-    targetSdkVersion = 25
+    targetSdkVersion = 28
 
     versionCode = 800800
     versionName = "0.8.8"
 }
 
-wrapper {
-    gradleVersion = '2.14.1'
-}
+//wrapper {
+//    gradleVersion = '2.14.1'
+//}
