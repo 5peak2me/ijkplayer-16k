@@ -46,9 +46,8 @@ FF_CFG_FLAGS=
 FF_PLATFORM_CFG_FLAGS=
 
 FF_EXTRA_CFLAGS=
-FF_EXTRA_LDFLAGS=
-
-
+FF_EXTRA_LDFLAGS="-Wl,-z,max-page-size=16384"
+FF_EXTRA_LDFLAGS="$FF_EXTRA_LDFLAGS -Wl,-z,common-page-size=16384"
 
 #--------------------
 echo ""
