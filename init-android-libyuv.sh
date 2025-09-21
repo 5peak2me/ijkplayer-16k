@@ -32,4 +32,13 @@ echo "== pull libyuv fork =="
 sh $TOOLS/pull-repo-ref.sh $IJK_LIBYUV_FORK ijkmedia/ijkyuv ${IJK_LIBYUV_LOCAL_REPO}
 cd ijkmedia/ijkyuv
 git checkout ${IJK_LIBYUV_COMMIT}
+
+echo "== add LOCAL_LDFLAGS to Android.mk"
+MAX_PAGE_SIZE_LDFLAGS='LOCAL_LDFLAGS += -Wl,-z,max-page-size=16384'
+grep -qxF "$MAX_PAGE_SIZE_LDFLAGS" Android.mk || echo -e "$MAX_PAGE_SIZE_LDFLAGS" >> Android.mk
+
+echo "== add target_link_libraries to CMakeLists.txt"
+TARGET_LINK_LIBRARIES='target_link_libraries(${ly_lib_name} "-Wl,-z,max-page-size=16384")'
+grep -qxF "$TARGET_LINK_LIBRARIES" CMakeLists.txt || echo "$TARGET_LINK_LIBRARIES" >> CMakeLists.txt
+
 cd -
